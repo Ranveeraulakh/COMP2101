@@ -42,13 +42,6 @@ external_name=$(getent hosts $external_ip | awk '{print $2}')
 router_hostname=$(route | grep "default" | awk '{ print $2 }')
 network_number=$(cat /etc/networks | awk 'NR==3{print $2; exit}')
 network_name=$(cat /etc/networks | awk 'NR==3{print $1; exit}')
-#$(cat /etc/networks | grep  -E '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-9]\.|172\.3[01]\.)')
-#$(cat /etc/networks | grep "$router_hostname" | awk '{ print $2 }')
-#Router 	   : $(ip route | grep default | awk '{print $3}')
-#Router Name   : $(getent hosts `ip route|grep 'default '|awk '{print $3}'|sed 's,/.*,,'` | awk '{print $2}')
-#Network	   : $(ip route | awk '{print $1}' | grep 172 |sed 's,/.*,,')
-#Network Name  : $(getent hosts `ip route|awk '{print $1}'|grep 172 |sed 's,/.*,,'` | awk '{print $2}')
-
 cat <<EOF
 Hostname        : $myhostname
 LAN Address     : $lan_ipaddress

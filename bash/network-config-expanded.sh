@@ -18,11 +18,8 @@
 # stream editing with sed and awk are used to extract only the data we want displayed
 # we use the hostname command to get our system name
 my_hostname=$(hostname)
-# the default route can be found in the route table normally
-# the router name is obtained with getent
 default_router_address=$(ip r s default| cut -d ' ' -f 3)
 default_router_name=$(getent hosts $default_router_address|awk '{print $2}')
-# finding external information relies on curl being installed and relies on live internet connection
 external_address=$(curl -s icanhazip.com)
 external_name=$(getent hosts $external_address | awk '{print $2}')
 cat <<EOF
@@ -34,12 +31,6 @@ Router Name   : $default_router_name
 External IP   : $external_address
 External Name : $external_name
 EOF
-# Define the interface being summarized
-# interface=$( ls -l /sys/class/net/ | awk '{print $9}')
-# loopback: sudo ifconfig lo:10 127.0.0.2 netmask 255.0.0.0 up
-# Find an address and hostname for the interface being summarized
-# we are assuming there is only one IPV4 address assigned to this interface
-# Identify the network number for this interface and its name if it has one
 count=$(lshw -class network | awk '/logical name:/{print $3}' | wc -l)
 for((w=1;w<=$count;w+=1));
 do

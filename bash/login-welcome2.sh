@@ -1,18 +1,11 @@
 #!/bin/bash
 
-titles=("Professor" "Operator" "Programmer" "Boss" "Grunt" "Final Boss" "Network Admin" )
+titles=("Load" "Tech" "Scripter" "Hacker" "GOD" "Smugglar" "Geek" )
 num=$(( ${#titles[@]} ))
 ran=$(( RANDOM % num ))
-###############
-# Variables   #
-###############
 hostname=$(hostname)
 date=$(date +'%I:%M %p')
 weekday=$(date +%u)
-###############
-# Main        #
-###############
-#cat <<EOF
 cowsay "Welcome to planet $hostname, "${titles[$ran]} $USER!""
 if [ "$weekday" = "6" ] || [ "$weekday" = "7" ]
 then
